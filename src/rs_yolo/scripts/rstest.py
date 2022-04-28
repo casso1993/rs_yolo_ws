@@ -203,7 +203,7 @@ class YoloV5:
                         [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
 
 
-def publish_image(real_x, real_y, real_z, classification):
+def publish_image(real_x, real_y, real_z, classification, confidence):
     detect_result=Info()
     rate = rospy.Rate(30)
     header = Header(stamp=rospy.Time.now())
@@ -213,6 +213,7 @@ def publish_image(real_x, real_y, real_z, classification):
     detect_result.y = real_y
     detect_result.z = real_z
     detect_result.classification = classification
+    detect_result.confidence = confidence
 
     pub.publish(detect_result)
     rate.sleep()
@@ -226,7 +227,8 @@ if __name__ == "__main__":
     print("[INFO] YoloV5目标检测-程序启动")
     print("[INFO] 开始YoloV5模型加载")
     # YOLOV5模型配置文件(YAML格式)的路径 yolov5_yaml_path
-    model = YoloV5(yolov5_yaml_path='/home/casso/rs_yolo_ws/src/rs_yolo/scripts/config/yolov5s.yaml')
+    #model = YoloV5(yolov5_yaml_path='/home/polyume/rs_yolo_ws/src/rs_yolo/scripts/config/yolov5s.yaml')
+    model = YoloV5(yolov5_yaml_path='./src/rs_yolo/scripts/config/yolov5s.yaml')
     print("[INFO] 完成YoloV5模型加载")
 
     try:
@@ -273,7 +275,7 @@ if __name__ == "__main__":
                     camera_xyz_list.append(camera_xyz)
                     #publish_image(camera_xyz[0], camera_xyz[1], camera_xyz[2], class_id_list)
             for i in range(len(camera_xyz_list)):
-                publish_image(camera_xyz_list[i][0], camera_xyz_list[i][1], camera_xyz_list[i][2], model.yolov5['class_name'][class_id_list[i]])
+                publish_image(camera_xyz_list[i][0], camera_xyz_list[i][1], camera_xyz_list[i][2], model.yolov5['class_name'][class_id_list[i]], conf_list[i])
                 #publish_image(camera_xyz_list[i][0], camera_xyz_list[i][1], camera_xyz_list[i][2])
 
 

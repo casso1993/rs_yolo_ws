@@ -1,8 +1,0 @@
-prefix=/home/casso/rs_yolo_ws/devel
-
-Name: rs_yolo
-Description: Description of rs_yolo
-Version: 0.0.0
-Cflags: -I/home/casso/rs_yolo_ws/devel/include
-Libs: -L${prefix}/lib 
-Requires: roscpp rospy std_msgs geometry_msgs message_runtime

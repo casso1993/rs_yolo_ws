@@ -1,2 +1,0 @@
-rs_yolo
--DCATKIN_DEVEL_PREFIX=/home/casso/rs_yolo_ws/devel -DCMAKE_INSTALL_PREFIX=/home/casso/rs_yolo_ws/install -G Unix Makefiles
