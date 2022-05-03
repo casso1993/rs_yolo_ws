@@ -1,5 +1,5 @@
 1. Environment
-conda creat --name XXX
+conda creat --name XXX   python=3.8
 cd rs_yolo_ws/src/rs_yolo/scripts
 pip install  -U  -r   requirements.txt
 pip install pyrealsense2
